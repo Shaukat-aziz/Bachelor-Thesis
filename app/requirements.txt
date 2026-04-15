@@ -1,0 +1,22 @@
+# Pentagon Photonic Crystal Simulator - Requirements
+# Install with: pip install -r requirements.txt
+
+# Core dependencies
+numpy>=1.20.0
+matplotlib>=3.3.0
+scipy>=1.7.0
+Pillow>=8.0.0
+
+# PyMeep for electromagnetic simulations (optional but recommended)
+# Install via conda: conda install -c conda-forge pymeep
+# OR uncomment below for pip installation (limited support)
+# pymeep>=1.25.0
+
+# GPU acceleration (optional)
+# For NVIDIA GPUs, install one of these:
+# cupy-cuda11x>=10.0.0 (replace 11x with CUDA version)
+# OR via conda: conda install -c conda-forge cupy
+
+# Alternative GPU frameworks (optional)
+# torch>=1.10.0     # PyTorch
+# jax>=0.3.0        # JAX

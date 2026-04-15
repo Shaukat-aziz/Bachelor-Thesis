@@ -1,0 +1,1134 @@
+\documentclass[12pt,a4paper,oneside]{book}
+
+% ── Encoding & Language ───────────────────────────────────────────────────────
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+% ── Microtypography ───────────────────────────────────────────────────────────
+\usepackage[final,protrusion=true,expansion=false]{microtype}
+
+% ── Mathematics ───────────────────────────────────────────────────────────────
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{siunitx}
+\sisetup{separate-uncertainty=true, range-phrase=\text{--}}
+
+% ── Figures & Tables ──────────────────────────────────────────────────────────
+\usepackage{graphicx}
+\usepackage[font=small, labelfont=bf]{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+
+% ── Colour ────────────────────────────────────────────────────────────────────
+\usepackage[dvipsnames, table]{xcolor}
+\definecolor{linkblue}{RGB}{0,55,130}
+\definecolor{citegreen}{RGB}{0,110,55}
+
+% ── Code Listings ─────────────────────────────────────────────────────────────
+\usepackage{listings}
+\lstset{%
+  basicstyle   = \small\ttfamily,
+  breaklines   = true,
+  frame        = single,
+  numbers      = left,
+  numberstyle  = \tiny\color{gray},
+  keywordstyle = \color{MidnightBlue},
+  commentstyle = \color{OliveGreen},
+  stringstyle  = \color{BrickRed},
+  tabsize      = 4,
+  showstringspaces = false,
+}
+
+% ── Page Layout & Spacing ─────────────────────────────────────────────────────
+\usepackage[top=1in, bottom=1in, left=1.25in, right=1in]{geometry}
+\usepackage{setspace}
+\usepackage{emptypage}
+
+% ── Headers & Footers ─────────────────────────────────────────────────────────
+\usepackage{fancyhdr}
+
+\fancypagestyle{mainpages}{%
+  \fancyhf{}
+  \fancyhead[L]{\small\itshape\nouppercase{\leftmark}}
+  \fancyhead[R]{\small\itshape\nouppercase{\rightmark}}
+  \fancyfoot[C]{\thepage}
+  \renewcommand{\headrulewidth}{0.4pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+
+% ── Quotes & Bibliography ─────────────────────────────────────────────────────
+\usepackage[autostyle]{csquotes}
+
+% ── Hyperlinks ────────────────────────────────────────────────────────────────
+\usepackage{hyperref}
+\usepackage{bookmark}
+
+\hypersetup{%
+  colorlinks        = true,
+  citecolor         = citegreen,
+  urlcolor          = linkblue,
+  linkcolor         = linkblue,
+  pdfauthor         = {Shaukat Aziz},
+  pdftitle          = {Photonic Disclination Cavities},
+  pdfsubject        = {Nanophotonics, Topological Defects},
+  pdfkeywords       = {photonic crystal, disclination, vortex, nanolaser, band gap},
+  linktocpage,
+  bookmarksnumbered = true,
+  breaklinks        = true,
+}
+
+% ── Theorem environments ──────────────────────────────────────────────────────
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{example}{Example}[chapter]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{note}{Note}
+
+% ── Cross-reference shorthands ────────────────────────────────────────────────
+\newcommand{\rcite}[1]{Ref.~\cite{#1}}
+\newcommand{\eqnref}[1]{Eq.~(\ref{#1})}
+\newcommand{\figref}[1]{Fig.~\ref{#1}}
+\newcommand{\tabref}[1]{Table~\ref{#1}}
+\newcommand{\secref}[1]{Sec.~\ref{#1}}
+\newcommand{\chapref}[1]{Chapter~\ref{#1}}
+\newcommand{\appref}[1]{Appendix~\ref{#1}}
+
+% ── Math shorthands ───────────────────────────────────────────────────────────
+\newcommand{\term}[1]{\left( #1 \right)}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\comm}[1]{\left[ #1 \right]}
+\newcommand{\curly}[1]{\left\{ #1 \right\}}
+\newcommand{\expect}[1]{\left\langle #1 \right\rangle}
+\newcommand{\vb}[1]{\bm{#1}}
+\newcommand{\uv}[1]{\hat{\bm{#1}}}
+\newcommand{\Hfield}{\vb{H}}
+\newcommand{\Efield}{\vb{E}}
+\newcommand{\eps}{\epsilon}
+\newcommand{\om}{\omega}
+\newcommand{\kvec}{\vb{k}}
+\newcommand{\rvec}{\vb{r}}
+\newcommand{\Rvec}{\vb{R}}
+
+% ── Paragraph geometry ────────────────────────────────────────────────────────
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{15pt}
+
+% ── Title page ────────────────────────────────────────────────────────────────
+\title{%
+  \sc
+  \Huge{Photonic Disclination Cavities}\\[4pt]
+  \Large{Band Structure, Field Localization, and}\\
+  \Huge{Symmetry-Driven Optical Mode Engineering}
+  \\[40pt]
+  \large{A Thesis submitted in partial fulfillment of the}\\[5pt]
+  \large{requirements for the degree of}\\[15pt]
+  \Large{Bachelor of Science}\\[5pt]
+  \Large{(Research)}\\[30pt]
+  \normalsize{by}\\[15pt]
+  \large{Shaukat Aziz}\\[5pt]
+  \normalsize{4th Year Undergraduate Programme}\\[5pt]
+  \normalsize{Indian Institute of Science}\\[40pt]
+  \IfFileExists{iisc_logo.jpg}{%
+    \includegraphics[scale=0.04]{iisc_logo.jpg}%
+  }{\Large{[Institute Logo]}}
+  \\[40pt]
+  \normalsize{Under the supervision of}\\[10pt]
+  \large{Prof.\ Manukumara Manjappa}\\
+  \normalsize{Department of Instrumentation and Applied Physics,\\
+  Indian Institute of Science}%
+}
+\author{}
+\date{}
+
+% =============================================================================
+\begin{document}
+% =============================================================================
+
+\singlespacing
+\begin{titlepage}
+  \maketitle
+\end{titlepage}
+
+\onehalfspacing
+\frontmatter
+\pagestyle{plain}
+
+% ── Acknowledgements ──────────────────────────────────────────────────────────
+\chapter*{\centering Acknowledgements}
+\addcontentsline{toc}{chapter}{Acknowledgements}
+
+I sincerely thank Prof.\ Manukumara Manjappa for his guidance, patience, and constant encouragement throughout the course of this thesis. His way of approaching research, both physically and conceptually, shaped how I learned to think about photonics. I am grateful to the Department of Instrumentation and Applied Physics, Indian Institute of Science, for providing a stimulating academic environment and the freedom to explore ideas across optics, condensed matter analogies, and cavity physics.
+
+I also thank my teachers, friends, and lab colleagues for many useful discussions that clarified my understanding of photonic crystals, topological defects, and structured optical fields. Their questions and suggestions helped improve both the content and direction of this work. Special acknowledgment is due to the developers of the MIT Electromagnetic Equation Propagation (MEEP) package and its companion mode solver MPB, which provided the primary computational platform for the band structure and field simulations presented in this thesis.
+
+Finally, I thank my family for their support and patience throughout my undergraduate years. Their encouragement made it possible to continue through the long and often gradual process of learning, revising, and improving. This thesis is as much a result of that support as it is of my academic effort.
+
+% ── Abstract ──────────────────────────────────────────────────────────────────
+\chapter*{\centering Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+
+Photonic crystals are dielectric structures with spatial periodicity that modify the propagation of electromagnetic waves by producing optical band structures and photonic band gaps. By introducing defects into an otherwise periodic medium, one can create localized cavity states with small modal volume, high quality factor, and strongly tunable field distributions. This thesis studies a special class of such defect cavities known as photonic disclination cavities, where a rotational mismatch introduced into the lattice gives rise to localized optical modes with unusual symmetry and phase structure.
+
+The work begins with the Maxwell eigenvalue formulation for periodic dielectric media, derives the Bloch mode picture, and discusses the physical origin of photonic band gaps through the analogy with the two-dimensional Su--Schrieffer--Heeger (SSH) model. The four-site square-lattice tight-binding model is introduced as a direct analogy for the photonic crystal unit cell, with intra-cell hopping $t_1$ and inter-cell hopping $t_2$ controlling the topological phase. Numerical band structure calculations using the MIT Photonic Bands (MPB) solver confirm the existence of a complete band gap for a square lattice of air holes in a dielectric background with lattice constant $a = \SI{500}{\nano\metre}$, placing the gap in the telecommunication band near \SI{1550}{\nano\metre}.
+
+The geometric concept of a disclination is then developed through the Volterra construction: a sector of angular width $\omega = 2\pi(n-4)/4$ is inserted into a base $C_4$ lattice and the result is angularly compressed back to $2\pi$ to produce a $C_n$-symmetric structure. For $n = 5$, this yields an angular excess of $\pi/2$. The resulting photonic disclination cavity is characterized by a core region whose site spacing is modified by a dimensionless pull parameter $c$ and whose second ring of sites is angularly displaced by a parameter $d$, both of which were implemented and visualized through animated Volterra construction scripts developed as part of this thesis.
+
+The connection between core geometry and cavity mode character is analyzed using both tight-binding reasoning and the multipole expansion of the magnetic field $H_z$ in cylindrical coordinates. Modes of angular momentum $\ell = 0$ correspond to polarization-vortex emission; modes with $|\ell| = 2$ correspond to hybrid vector beam emission. The relevance of the $C_5$ point group symmetry of the disclination cavity to the coupling between angular momentum channels $\ell$ and $\ell \pm 5$ is discussed in detail.
+
+The final part of the thesis examines the experimental realization of vortex nanolasing in photonic disclination cavities on an InGaAsP multiple-quantum-well slab platform. The cavity structure, lasing threshold behavior, polarization-resolved mode imaging, off-center self-interference measurements, and Stokes parameter characterization are reviewed and placed in the context of the theoretical framework developed in the earlier chapters. A comparison with the tunable OAM microlaser of Zhang et al.\ (\textit{Science}, 2020) highlights the distinct advantages of the disclination approach for on-chip structured-light generation.
+
+% ── Table of Contents ─────────────────────────────────────────────────────────
+{\hypersetup{linkcolor=black}%
+  \tableofcontents
+  \listoffigures
+  \addcontentsline{toc}{chapter}{List of Figures}
+  \listoftables
+  \addcontentsline{toc}{chapter}{List of Tables}
+}
+
+% =============================================================================
+\mainmatter
+\pagestyle{mainpages}
+% =============================================================================
+
+%==============================================================================
+\chapter{Introduction}
+\label{chap:introduction}
+%==============================================================================
+
+\section{Background and motivation}
+
+The ability to control the flow of light at the wavelength scale is among the central goals of modern photonics. Unlike electrons in a conductor, photons in free space do not interact with each other or with the medium unless the medium is specifically structured. Photonic crystals address this by imposing a periodic dielectric modulation whose spatial period is comparable to the optical wavelength, enabling the engineering of optical dispersion, density of states, and group velocity over a broad range. The resulting band structure formalism draws directly on the mathematics of quantum mechanical band theory and allows one to predict and design the propagation properties of light with the same precision that solid-state physics applies to electrons in crystalline solids.
+
+The analogy is not merely formal. A periodic dielectric function $\eps(\rvec)$ enters Maxwell's equations in a way that produces an eigenvalue problem structurally identical to the Schr\"{o}dinger equation in a periodic potential. The resulting eigenvalues define photonic bands and, importantly, photonic band gaps: frequency intervals in which no bulk propagating mode exists. A judiciously placed defect in such a crystal pulls a localized state into the gap, creating a resonant cavity with no straightforward analog in conventional optics. The surrounding crystal acts as a nearly perfect mirror for frequencies inside the gap, enabling confinement that is far more flexible geometrically than total-internal-reflection waveguides.
+
+Among the many varieties of photonic crystal defect, rotational defects occupy a theoretically rich and practically important class. A disclination is a topological defect defined not by the removal of a point or line of material, but by a rotational mismatch in the lattice itself. In the classical language of continuum elasticity, due to Volterra, one cuts a wedge-shaped sector out of an otherwise perfect crystal and re-joins the boundaries. The resulting structure has a core whose local symmetry differs from that of the surrounding lattice, and around which the angular orientation of the lattice undergoes an abrupt change equal to the removed or inserted wedge angle. When this construction is applied to a two-dimensional photonic crystal, the resulting photonic disclination cavity possesses localized in-gap modes whose spatial and phase structure reflects the full rotational geometry of the defect.
+
+Interest in these structures has accelerated since it was recognized that photonic disclination cavities can support lasing modes that directly emit structured optical beams, including optical vortices and vector beams, without any external beam-shaping optics. This means that the resonator itself encodes the topology of the output field. For telecommunications and quantum optical applications where vortex and vector beams offer additional degrees of freedom for information encoding, having a compact on-chip source of such fields is a significant enabling step.
+
+The computational work underpinning this thesis involved several software tools. Band structure calculations were performed using the MIT Photonic Bands (MPB) solver, a frequency-domain mode solver based on iterative diagonalization in a plane-wave basis. Time-domain field simulations used the MIT Electromagnetic Equation Propagation (MEEP) package, which employs the finite-difference time-domain (FDTD) method. Geometric construction of disclination structures for export to the COMSOL finite-element solver was handled through custom Python scripts using the \texttt{ezdxf} library, with a Kivy-based graphical interface for interactive design. Animated visualizations of the Volterra construction were produced using \texttt{numpy}, \texttt{matplotlib}, and \texttt{imageio}.
+
+\section{Core concepts for this thesis}
+\label{sec:core-concepts}
+
+This section provides a direct engineering interpretation of the key ideas used throughout the thesis.
+
+\subsection{What topology means in this context}
+
+In photonics, topology means a \emph{global property} of the band structure that does not change under small, smooth perturbations (for example, small fabrication disorder, weak index variation, or slight hole-position errors), as long as the band gap remains open. Instead of describing only local geometry, topology classifies phases by invariants such as winding number, Zak phase, or multipole moments.
+
+For this thesis, the practical message is: if the surrounding photonic crystal is in a non-trivial topological phase, then certain localized states are enforced at boundaries or defects by bulk properties, not by fine-tuning. This is the engineering reason topological design is attractive.
+
+\subsection{What a disclination is}
+
+A disclination is a rotational topological defect. In a square-lattice photonic crystal, one creates it by changing the angular order of the lattice around a core: a wedge is removed or inserted and the structure is re-joined. The result is a rotational mismatch concentrated at the core, with a Frank angle
+\begin{equation}
+  \Omega = 2\pi\,\frac{n-4}{4}
+\end{equation}
+for a transition from a base $C_4$ lattice to $C_n$. A positive $\Omega$ corresponds to wedge insertion ($C_5$), and a negative $\Omega$ corresponds to wedge removal ($C_3$).
+
+\subsection{What band structure is and why band gap matters}
+
+Band structure is the map $\omega_n(\mathbf{k})$ of allowed optical eigenfrequencies versus Bloch wave vector. It tells us which waves can propagate in the periodic crystal and with what dispersion.
+
+The band gap is the frequency interval where no bulk Bloch mode exists for any $\mathbf{k}$. Engineering use of the gap is central: we design the crystal so that a target frequency (near telecom) lies inside this forbidden interval, then intentionally introduce a defect so that only selected localized cavity modes appear there.
+
+\subsection{What in-gap states are}
+
+An in-gap state is a localized mode whose frequency lies inside the bulk band gap. Because the bulk has no propagating states at that frequency, the mode cannot leak laterally as an extended crystal mode and therefore remains confined near the defect core. In this thesis, these in-gap states are the cavity modes used for structured-light generation and lasing.
+
+\subsection{What quadrupole modes are and why they are important here}
+
+In the 2D SSH-inspired picture, the non-trivial phase is a higher-order topological phase characterized by quantized quadrupole response and corner-localized states in finite geometries. In photonic language, this means energy localizes at specific symmetry-protected positions (corners/defect core) rather than along ordinary edges.
+
+Quadrupole-related localization is especially important here for three reasons:
+\begin{itemize}
+  \item It gives robust defect-core localization tied to bulk topology, not only to accidental resonant tuning.
+  \item It naturally supports compact cavity states with small mode volume, which is beneficial for threshold and Purcell enhancement.
+  \item It connects directly to symmetry-selected angular-momentum channels ($\ell=0$ and $|\ell|=2$), which are needed for polarization-vortex and hybrid vector-beam emission.
+\end{itemize}
+Compared with ordinary defect modes in trivial crystals, these modes are more systematically designable through topological phase control.
+
+\subsection{How topological properties are used in this thesis}
+
+The workflow is:
+\begin{enumerate}
+  \item choose unit-cell geometry so the bulk crystal is in the non-trivial regime ($|t_2|>|t_1|$ in the SSH analogy);
+  \item verify a clear photonic band gap using MPB;
+  \item introduce a rotational defect (disclination) at the center;
+  \item tune core geometry parameters ($c$, $d$, parity $s$) to select the in-gap mode character;
+  \item use MEEP/COMSOL to confirm frequency, field profile, and radiation behavior.
+\end{enumerate}
+Thus, topology is used as a design principle for \emph{which} modes exist, while geometric tuning controls \emph{which of those modes is selected and emitted}.
+
+\subsection{What the Volterra process is}
+
+The Volterra process is the constructive procedure used to generate a disclination geometry:
+\begin{enumerate}
+  \item start from a regular $C_4$ lattice region;
+  \item cut along a radial line and insert/remove an angular sector;
+  \item rejoin and angularly compress/expand back to $2\pi$;
+  \item optionally apply core pull and second-ring displacement for cavity-mode engineering.
+\end{enumerate}
+This process gives a mathematically controlled path from a standard periodic lattice to a rotationally defective, mode-selective cavity core.
+
+\subsection{How we go from $C_4$ to $C_3$ and $C_5$}
+
+Using
+\begin{equation}
+  \omega = 2\pi\,\frac{n-4}{4},
+\end{equation}
+the two most relevant cases are:
+\begin{itemize}
+  \item $C_4 \rightarrow C_5$: $\omega=+\pi/2$ (insert a $90^\circ$ sector), then compress angles to recover a full $2\pi$ domain.
+  \item $C_4 \rightarrow C_3$: $\omega=-\pi/2$ (remove a $90^\circ$ sector), then expand/compress consistently to recover a full $2\pi$ domain.
+\end{itemize}
+Both operations change the rotational topology at the core while retaining a periodic-like environment away from the core.
+
+\subsection{How disclination affects in-gap states}
+
+The disclination changes local connectivity and rotational symmetry at the defect core. In a topological background, this does three things simultaneously:
+\begin{itemize}
+  \item creates or pins localized in-gap states at the core (bulk-disclination correspondence);
+  \item changes the mode symmetry class (allowed angular momentum channels under $C_n$);
+  \item enables mode switching through geometric tuning: expanded-core configurations favor $\ell=0$ (polarization-vortex-like), while contracted/modified cores favor $|\ell|=2$ (hybrid vector-beam-like).
+\end{itemize}
+Therefore, the disclination is not only a geometric defect; it is the central topological actuator that determines whether and how in-gap cavity states appear and what structured light they emit.
+
+\section{Objectives of the thesis}
+\label{sec:objectives}
+
+The main objectives of this thesis are:
+
+\begin{itemize}
+  \item To derive the electromagnetic eigenvalue formulation for photonic crystals and establish the connection between Bloch theory, photonic band gaps, and topological band physics.
+  \item To develop the two-dimensional SSH tight-binding model as a concrete analogy for the square-lattice photonic crystal with a four-site basis, and to compute and interpret the band structure numerically using MPB.
+  \item To introduce the Volterra construction for disclinations in a rigorous and pedagogically clear way, and to implement and animate this construction for the transition from a $C_4$ to a $C_n$ lattice.
+  \item To analyze the connection between disclination core geometry parameters (core pull $c$ and second-ring angular displacement $d$) and the character of the resulting localized cavity modes, including their angular momentum and polarization structure.
+  \item To review the experimental realizations of vortex nanolasing in photonic disclination cavities, with emphasis on structural design, mode identification, and optical characterization methods.
+  \item To compare the disclination approach with alternative vortex microlaser platforms and assess the relative advantages of each in terms of compactness, tunability, and beam quality.
+\end{itemize}
+
+\section{Scope and limitations}
+\label{sec:scope}
+
+This thesis is conceptual and computational in its primary orientation. It does not present new fabrication results or original experimental data beyond the simulations and geometric analyses performed as part of this work. The MEEP and MPB calculations presented here are based on two-dimensional and quasi-two-dimensional (slab) idealizations of the actual three-dimensional structures fabricated in the laboratory. Radiation losses out of the slab plane, fabrication disorder, and gain dynamics are discussed qualitatively but not simulated in full three-dimensional detail.
+
+The emphasis throughout is on building physical understanding. Mathematical derivations are carried to a level of completeness appropriate for an undergraduate research thesis while remaining connected to the literature. Where numerical results from the literature are cited, the theoretical framework needed to interpret them is always provided first.
+
+\section{Organization of the thesis}
+\label{sec:organization}
+
+\chapref{chap:periodic-media} develops the electromagnetic theory of periodic dielectric media, derives the Bloch mode eigenvalue problem, introduces the photonic band structure, and explains the physical mechanism of band gap formation. \chapref{chap:ssh-analogy} introduces the two-dimensional SSH tight-binding model as an analogy for the photonic crystal unit cell and presents numerical band structure calculations for a square-lattice structure at telecom and THz wavelengths. \chapref{chap:defect-cavities} discusses cavity formation through defect engineering, defines quality factor and modal volume, and reviews the main classes of photonic crystal cavity. \chapref{chap:disclinations} introduces disclinations through the Volterra construction, describes the photonic implementation in detail, and analyzes the resulting mode symmetries using the multipole expansion. \chapref{chap:vortex-nanolasing} reviews the experimental realization of vortex nanolasing in photonic disclination cavities and compares different vortex laser platforms. \chapref{chap:computation} documents the computational tools and simulation results from this thesis work. Finally, \chapref{chap:conclusion} summarizes the main findings and outlines future research directions.
+
+%==============================================================================
+\chapter{Electromagnetic Waves in Periodic Dielectric Media}
+\label{chap:periodic-media}
+%==============================================================================
+
+\section{Maxwell's equations in an inhomogeneous medium}
+\label{sec:maxwell}
+
+The starting point for photonic crystal theory is the macroscopic Maxwell equations in a linear, isotropic, non-magnetic, and lossless dielectric medium. In SI units, with the time-harmonic convention $e^{-i\om t}$, the equations take the form
+\begin{align}
+  \nabla \times \Efield &= i\om\mu_0 \Hfield, \label{eq:curl-E}\\
+  \nabla \times \Hfield &= -i\om\eps_0\eps(\rvec)\Efield, \label{eq:curl-H}\\
+  \nabla \cdot [\eps(\rvec)\Efield] &= 0, \label{eq:div-E}\\
+  \nabla \cdot \Hfield &= 0, \label{eq:div-H}
+\end{align}
+where $\eps(\rvec)$ is the spatially varying relative permittivity and $\mu_0$, $\eps_0$ are the permeability and permittivity of free space. The absence of free charges and the non-magnetic assumption $\mu_r = 1$ are standard for optical dielectrics in the visible and near-infrared range.
+
+Combining \eqnref{eq:curl-E} and \eqnref{eq:curl-H} by eliminating $\Efield$ yields the master equation for the magnetic field:
+\begin{equation}
+  \nabla \times \left( \frac{1}{\eps(\rvec)} \nabla \times \Hfield \right)
+  = \left( \frac{\om}{c} \right)^2 \Hfield,
+  \label{eq:maxwell-eigenproblem}
+\end{equation}
+where $c = 1/\sqrt{\mu_0\eps_0}$ is the speed of light in vacuum. This is the central equation of photonic crystal theory. It is an eigenvalue equation: for a given dielectric structure $\eps(\rvec)$, the allowed frequencies $\om$ and corresponding field profiles $\Hfield(\rvec)$ are determined by solving it. The left-hand side defines a Hermitian operator
+\begin{equation}
+  \hat{\Theta}\Hfield \equiv \nabla \times \left(\frac{1}{\eps(\rvec)}\nabla\times\Hfield\right),
+\end{equation}
+so that \eqnref{eq:maxwell-eigenproblem} reads $\hat{\Theta}\Hfield = (\om/c)^2\Hfield$. Since $\hat{\Theta}$ is Hermitian with respect to the inner product $\langle \vb{F}, \vb{G}\rangle = \int \vb{F}^*\cdot\vb{G}\,d^3r$, all eigenfrequencies are real and non-negative for a lossless medium.
+
+The magnetic-field formulation is preferred in photonic crystal calculations for two reasons. First, it involves a single Hermitian operator acting on a divergence-free vector field, simplifying numerical treatment. Second, the analogous equation for the electric field $\Efield$ involves the operator $\eps^{-1}(\rvec)\nabla\times\nabla\times$, which is not Hermitian with the natural inner product unless weighted by $\eps(\rvec)$.
+
+\section{Variational principle and energy arguments}
+\label{sec:variational}
+
+The Hermitian nature of $\hat{\Theta}$ implies a variational principle: the ground-state (lowest-frequency) mode minimizes the functional
+\begin{equation}
+  U_\mathrm{EM}[\Hfield] = \frac{\int \frac{1}{\eps(\rvec)} |\nabla\times\Hfield|^2\,d^3r}{\int |\Hfield|^2\,d^3r}.
+\end{equation}
+Higher modes minimize this functional subject to orthogonality with lower modes. This principle is the basis of the MPB iterative eigensolver, which uses preconditioned conjugate gradient optimization to find the band frequencies.
+
+A physical consequence is the following concentration theorem: for two dielectric structures $\eps_a(\rvec) \geq \eps_b(\rvec)$ at every point, the eigenfrequencies of the first structure are always lower or equal to those of the second (since a larger $\eps$ decreases the integrand). This means that increasing the dielectric contrast lowers the band frequencies, and in particular the band gap shifts to lower frequencies as the background permittivity increases.
+
+\section{Bloch's theorem and photonic bands}
+\label{sec:bloch}
+
+If the dielectric function is periodic, $\eps(\rvec + \Rvec) = \eps(\rvec)$ for every lattice vector $\Rvec = n_1\vb{a}_1 + n_2\vb{a}_2$ (in two dimensions), then $\hat{\Theta}$ commutes with all lattice translations $T_{\Rvec}$. The eigenfunctions can therefore be simultaneously chosen as eigenfunctions of all $T_{\Rvec}$, which by Bloch's theorem means they take the form
+\begin{equation}
+  \Hfield_{n\kvec}(\rvec) = e^{i\kvec\cdot\rvec}\, \vb{u}_{n\kvec}(\rvec),
+  \label{eq:bloch-mode}
+\end{equation}
+where $\vb{u}_{n\kvec}(\rvec + \Rvec) = \vb{u}_{n\kvec}(\rvec)$ has the periodicity of the lattice, $n$ is the band index, and $\kvec$ is the Bloch wave vector. The wave vector is defined modulo reciprocal lattice vectors $\vb{G}$ satisfying $\vb{G}\cdot\Rvec = 2\pi m$ for integer $m$, so $\kvec$ is restricted to the first Brillouin zone.
+
+Substituting \eqnref{eq:bloch-mode} into \eqnref{eq:maxwell-eigenproblem} yields an eigenvalue problem for $\vb{u}_{n\kvec}$ in a single unit cell with periodic boundary conditions:
+\begin{equation}
+  (\nabla+i\kvec) \times \left[\frac{1}{\eps(\rvec)}(\nabla+i\kvec)\times\vb{u}_{n\kvec}\right] = \left(\frac{\om_{n\kvec}}{c}\right)^2 \vb{u}_{n\kvec}.
+\end{equation}
+For each $\kvec$, this gives a discrete set of eigenfrequencies $\om_{n\kvec}$, $n=1,2,3,\ldots$, ordered by increasing frequency. As $\kvec$ varies smoothly over the Brillouin zone, each $\om_{n\kvec}$ traces a continuous band.
+
+The photonic band structure $\om_n(\kvec)$ is a complete characterization of all allowed modes of the infinite periodic crystal. Its analog in solid-state physics is the electronic band structure, with the photon frequency playing the role of electron energy. This analogy is more than mathematical: it motivates the direct import of condensed-matter concepts such as band topology, Wannier functions, and Berry phases into photonics.
+
+\section{Photonic band gaps}
+\label{sec:bandgaps}
+
+A photonic band gap is a range of frequencies for which no Bloch mode exists for any $\kvec$ in the Brillouin zone. Within this range, light cannot propagate through the bulk crystal as an extended state. The existence and width of the gap depend on:
+
+\paragraph{Dielectric contrast.} A large ratio $\eps_\mathrm{high}/\eps_\mathrm{low}$ is needed for a wide gap. For a two-dimensional square lattice of air holes ($\eps=1$) in a silicon background ($\eps \approx 12$), the TE gap can reach fractional widths exceeding 25\%.
+
+\paragraph{Filling fraction.} The fraction of the unit cell occupied by the low-$\eps$ material affects gap width and center frequency. For the square-lattice four-site structure with hole radius $r = 0.20a$, the filling fraction (air) is $4 \times \pi r^2/a^2 \approx 0.50$, which is near optimal for TE gap width.
+
+\paragraph{Polarization.} In two-dimensional systems, TE modes (electric field in-plane) and TM modes (magnetic field in-plane) decouple. The TE gap for the square-lattice four-site crystal is the relevant one for this thesis, as it is the broader of the two polarization gaps for the chosen parameters.
+
+\paragraph{Physical origin.} At the Brillouin zone boundary, plane waves related by a reciprocal lattice vector $\vb{G}$ are degenerate in the empty-lattice approximation. The periodic dielectric potential hybridizes these waves and splits the degeneracy. The lower-frequency mode concentrates electric field energy in the high-$\eps$ regions (dielectric band), while the upper mode concentrates energy in the low-$\eps$ regions (air band). The frequency split is the photonic band gap.
+
+\section{Scale invariance and normalized units}
+\label{sec:scaling}
+
+Maxwell's equations in a lossless dielectric are scale-invariant: if $(\Hfield(\rvec), \om)$ solves the eigenproblem for $\eps(\rvec)$, then $(\Hfield(\rvec/s), \om/s)$ solves it for $\eps(\rvec/s)$. This means all photonic band structure results can be expressed in normalized frequency $\tilde{\om} = \om a/(2\pi c) = a/\lambda$, independent of the physical scale of the structure. The physical frequency is recovered by specifying $a$.
+
+In the MPB calculations of this thesis, $a = 1$ normalized units are used. Two physical realizations are relevant:
+\begin{itemize}
+  \item $a = \SI{500}{\nano\metre}$: normalized gap at $a/\lambda \approx 0.30$--$0.40$ maps to $\lambda \approx \SI{1250}{\nano\metre}$--$\SI{1670}{\nano\metre}$, covering the telecom C-band.
+  \item $a = \SI{50000}{\nano\metre} = \SI{50}{\micro\metre}$: the same normalized gap maps to $\lambda \approx \SI{125}{\micro\metre}$--$\SI{167}{\micro\metre}$, or $\nu \approx \SI{1.8}{\tera\hertz}$--$\SI{2.4}{\tera\hertz}$.
+\end{itemize}
+
+\section{Slab photonic crystals}
+\label{sec:slabs}
+
+Real photonic crystal devices are most often implemented as slabs: thin dielectric films patterned with a two-dimensional periodic array of holes, with vertical confinement provided by total internal reflection. In a symmetric air-clad slab, modes are classified by their symmetry with respect to the midplane: even-symmetry (TE-like) and odd-symmetry (TM-like). For a slab thickness $t \approx 0.5a$--$0.6a$, the TE-like gap closely tracks the two-dimensional result.
+
+Radiation loss from the slab is an additional dissipation channel absent in the 2D case. Modes with in-plane wave vector $k < \om/c$ (inside the light cone) can couple to free-space radiation and acquire a finite radiation quality factor $Q_\mathrm{rad}$. The optimization of $Q_\mathrm{rad}$ for disclination cavity modes is an important practical consideration discussed in later chapters.
+
+%==============================================================================
+\chapter{The 2D SSH Model and Photonic Band Structure}
+\label{chap:ssh-analogy}
+%==============================================================================
+
+\section{The Su--Schrieffer--Heeger model}
+\label{sec:ssh-1d}
+
+The Su--Schrieffer--Heeger (SSH) model was introduced to describe conducting polymers with alternating bond lengths and has become the paradigmatic one-dimensional topological insulator. A 1D SSH chain consists of a dimerized lattice with alternating hopping amplitudes $t_1$ (intra-cell) and $t_2$ (inter-cell). The Bloch Hamiltonian is
+\begin{equation}
+  H(k) = \begin{pmatrix} 0 & t_1 + t_2 e^{-ika} \\ t_1 + t_2 e^{ika} & 0 \end{pmatrix},
+  \label{eq:ssh-1d}
+\end{equation}
+with energy bands $E_\pm(k) = \pm|t_1 + t_2 e^{ika}|$. A gap opens for $t_1 \neq t_2$. When $|t_1| < |t_2|$ (strong inter-cell coupling), the Zak phase of the lower band is $\pi$: the system is topologically non-trivial and supports localized zero-energy edge states on a finite chain. When $|t_1| > |t_2|$, the Zak phase is $0$ and no edge states exist.
+
+The photonic analog replaces ``hopping'' with electromagnetic coupling between adjacent dielectric resonators. In the photonic crystal, the sites of the tight-binding model correspond to regions of high field concentration (typically near or inside the dielectric rods or between closely spaced holes), and the coupling amplitudes $t_1$, $t_2$ are determined by the geometry of the unit cell.
+
+\section{Two-dimensional SSH quadrumer}
+\label{sec:ssh-2d}
+
+The two-dimensional generalization relevant to photonic disclination cavities is a square lattice with a four-site unit cell (quadrumer). The four sites are located at positions $(\pm\delta, \pm\delta)$ within each unit cell, where $\delta$ is the offset parameter. The sites are labeled as
+\begin{equation}
+  \text{site } 0 = (+\delta,+\delta), \quad
+  \text{site } 1 = (+\delta,-\delta), \quad
+  \text{site } 2 = (-\delta,+\delta), \quad
+  \text{site } 3 = (-\delta,-\delta).
+\end{equation}
+Intra-cell hoppings connect $\{0\leftrightarrow 1,\ 0\leftrightarrow 2,\ 1\leftrightarrow 3,\ 2\leftrightarrow 3\}$ with amplitude $t_1$. Inter-cell hoppings connect site $1$ to site $0$ of the adjacent cell along $\uv{x}$, and site $2$ to site $0$ of the adjacent cell along $\uv{y}$, with amplitude $t_2$. Next-nearest-neighbor (NNN) hoppings along cell diagonals have amplitude $t_\mathrm{nnn} = t_2/\sqrt{2}$.
+
+The Bloch Hamiltonian at crystal momentum $(k_x, k_y)$ is the $4\times4$ matrix
+\begin{equation}
+  H(k_x,k_y) = t_1\,\Gamma_\mathrm{intra} + t_2\,[\Gamma_\mathrm{inter}(\kvec) + \Gamma_\mathrm{inter}^\dagger(\kvec)] + t_\mathrm{nnn}\,[\Gamma_\mathrm{nnn}(\kvec) + \Gamma_\mathrm{nnn}^\dagger(\kvec)],
+  \label{eq:H-2d-ssh}
+\end{equation}
+where $\Gamma_\mathrm{intra}$ encodes the four intra-cell bonds, $\Gamma_\mathrm{inter}(\kvec)$ contains the inter-cell hoppings with Bloch phases $e^{-ik_xa}$ and $e^{-ik_ya}$, and $\Gamma_\mathrm{nnn}(\kvec)$ contains the NNN hoppings with phase $e^{-i(k_x+k_y)a}$.
+
+This model was implemented numerically in \texttt{Unit\_cell.ipynb} with parameters $t_1 = -0.2$, $t_2 = -1.0$, $t_\mathrm{nnn} = t_2/\sqrt{2} \approx -0.707$, and $a = 1.0$. The model yields four bands along the high-symmetry path $\Gamma \to X \to M \to \Gamma$, symmetric about zero energy due to the bipartite character of the hopping pattern. A gap between bands 1 and 2 (and between bands 3 and 4) opens with value $\Delta E \approx 1.6|t_2|$ for these parameters.
+
+\section{Topological phase and corner states}
+\label{sec:topo-phase}
+
+For $|t_2/t_1| > 1$ (strong inter-cell coupling), the 2D SSH quadrumer is in the topologically non-trivial phase. In this phase, a finite cluster with open boundary conditions supports localized zero-energy corner states. These corner states are the direct ancestors of the in-gap modes that appear at the core of a photonic disclination cavity.
+
+The physical picture is as follows. In the trivial phase ($|t_1| > |t_2|$), the sites within each cell are strongly bonded to each other and weakly to neighbors: there are no unpassivated bonds at the surface or corners. In the non-trivial phase ($|t_1| < |t_2|$), the inter-cell bonds are strong and the intra-cell bonds are weak. At a free corner, one bond per site is unpaired, and localized zero-energy amplitudes arise from the interference of these dangling bonds. This is second-order topology: the edge states are gapped (trivial in 1D), but the corners of the 2D system are non-trivial.
+
+The topological phase transition occurs when the bulk gap closes at $|t_1| = |t_2|$, i.e., at the $M$ point of the Brillouin zone. In the photonic crystal, the analog transition is controlled by the offset $\delta$: for small $\delta$ (sites near the cell center), intra-cell coupling dominates (trivial phase); for large $\delta$ (sites near the corners), inter-cell coupling dominates (topological phase). The critical value of $\delta$ depends on $r$ and $\eps_\mathrm{bg}$, but lies near $\delta \approx 0.25a$ for the parameters used in this thesis.
+
+\section{MPB band structure: square lattice at telecom and THz}
+\label{sec:mpb-bands}
+
+The electromagnetic band structure of the square-lattice four-site photonic crystal was computed using MPB via the Python interface in \texttt{Unit\_cell.ipynb}. The calculation parameters are:
+
+\begin{itemize}
+  \item Square lattice with $a = 1$ (normalized).
+  \item Four cylindrical air holes per unit cell at $(\pm\delta, \pm\delta)$, $\delta = 0.32a$, radius $r = 0.20a$.
+  \item Background permittivity $\eps_\mathrm{bg} = 3.42^2 \approx 11.70$ (silicon at telecom).
+  \item Six bands, resolution 100, $k$-path $\Gamma\!\to\!X\!\to\!M\!\to\!\Gamma$ with 20 interpolated points per segment.
+\end{itemize}
+
+The TE band structure shows a clear gap between bands 1 and 2 with a normalized gap width $\Delta(a/\lambda) \approx 0.10$ centered at $a/\lambda \approx 0.35$, corresponding to a fractional gap width of approximately 29\%.
+
+\begin{table}[htbp]
+  \centering
+  \caption{MPB band structure parameters and gap results for the square-lattice four-site photonic crystal.}
+  \label{tab:mpb-params}
+  \begin{tabular}{lcc}
+    \toprule
+    Parameter & Value & Unit \\
+    \midrule
+    Lattice constant (telecom) & 500 & \si{\nano\metre} \\
+    Lattice constant (THz) & 50\,000 & \si{\nano\metre} \\
+    Hole radius $r$ & $0.20\,a$ & -- \\
+    Site offset $\delta$ & $0.32\,a$ & -- \\
+    Background permittivity $\eps_\mathrm{bg}$ & 11.70 & -- \\
+    Normalized gap center $a/\lambda$ & ${\approx}\,0.35$ & -- \\
+    Normalized gap width $\Delta(a/\lambda)$ & ${\approx}\,0.10$ & -- \\
+    Fractional gap width & ${\approx}\,29\%$ & -- \\
+    Intra-cell hopping $t_1$ (TB model) & $-0.2$ & $|t_2|$ \\
+    Inter-cell hopping $t_2$ (TB model) & $-1.0$ & $|t_2|$ \\
+    NNN hopping $t_\mathrm{nnn}$ & ${\approx}-0.707$ & $|t_2|$ \\
+    TB band gap & ${\approx}\,1.6$ & $|t_2|$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+The scale invariance of Maxwell's equations means that rescaling the lattice constant from \SI{500}{\nano\metre} to \SI{50}{\micro\metre} shifts the gap from the telecom optical band to the THz band without changing the normalized structure or band diagram. This was verified in \texttt{Unit\_cell.ipynb} Cell 3 by computing the band structure for both $a_\mathrm{nm} = 500$ and $a_\mathrm{nm} = 50000$: the normalized frequency axes are identical, confirming scale invariance, while the physical frequency axes differ by a factor of 100.
+
+\section{Hexagonal lattice SSH model}
+\label{sec:hex-lattice}
+
+In addition to the square lattice, a hexagonal (triangular Bravais) lattice with a parallelogram unit cell was explored in \texttt{Hexagonal\_lattice\_band\_structure.ipynb}. The hexagonal lattice has primitive vectors
+\begin{equation}
+  \vb{a}_1 = a(1, 0), \qquad \vb{a}_2 = a\left(\tfrac{1}{2},\, \tfrac{\sqrt{3}}{2}\right),
+\end{equation}
+and its high-symmetry points are $\Gamma$, $M$, and $K$. The two-site (A-B sublattice) SSH Bloch Hamiltonian is
+\begin{equation}
+  H(\kvec) = \begin{pmatrix} 0 & h(\kvec) \\ h^*(\kvec) & 0 \end{pmatrix},
+  \qquad h(\kvec) = t_1 + t_2\,e^{-i\kvec\cdot\vb{a}_1} + t_2\,e^{-i\kvec\cdot\vb{a}_2},
+\end{equation}
+with bands $E_\pm(\kvec) = \pm|h(\kvec)|$. The gap closes at the $K$ point for $t_1 = t_2$ (Dirac cone), and opens for $t_1 \neq t_2$. The topological phase ($|t_1| < |t_2|$) supports localized states at the corners of a finite hexagonal cluster.
+
+The relevance of the hexagonal geometry to this thesis is that many photonic disclination structures in the literature use hexagonal underlying lattices (or triangular lattices in disguise), and understanding the phase diagram for the hexagonal SSH model provides context for interpreting which parameter regime the experimental structures occupy.
+
+%==============================================================================
+\chapter{Defect Cavities in Photonic Crystals}
+\label{chap:defect-cavities}
+%==============================================================================
+
+\section{Localization mechanism in a band gap}
+\label{sec:localization-mechanism}
+
+The introduction of a defect into a photonic crystal locally perturbs the dielectric function. If the perturbation pushes a mode frequency into the bulk band gap, the mode cannot propagate as an extended Bloch state. It therefore decays exponentially away from the defect and becomes spatially localized. The surrounding periodic crystal acts as a distributed Bragg mirror with a frequency-selective stop band, trapping the field near the perturbation.
+
+The localization length $\xi$ depends on the distance of the mode frequency from the nearest band edge. Near a band edge at $\om_\mathrm{edge}$, the effective mass of the photon (curvature of the band) is large, the decay into the crystal is slow, and $\xi$ is long. For a mode frequency deep inside the gap, the decay is exponential with a shorter $\xi$.
+
+In the tight-binding analogy, suppose the crystal is modeled as a chain of coupled resonators, each with resonance frequency $\om_0$ and nearest-neighbor coupling $\kappa$. The band extends from $\om_0 - 2|\kappa|$ to $\om_0 + 2|\kappa|$. If a single resonator is detuned to $\om_0 + \Delta$, it supports a localized mode at frequency $\om_0 + \Delta$ provided $|\Delta| > 2|\kappa|$, and the envelope decays as $\exp(-r/\xi)$ with $\xi^{-1} = \mathrm{arccosh}(|\Delta|/(2|\kappa|))$. For a photonic crystal with topological in-gap states, the localization is controlled not by a single detuned site but by the aggregate effect of the defect geometry on the local coupling topology.
+
+\section{Quality factor and modal volume}
+\label{sec:qv}
+
+The two most important figures of merit for a photonic crystal cavity are the quality factor $Q$ and the modal volume $V$.
+
+The quality factor is defined as
+\begin{equation}
+  Q = \om_0\,\frac{U}{P_\mathrm{loss}},
+  \label{eq:q-factor}
+\end{equation}
+where $U$ is the time-averaged stored electromagnetic energy and $P_\mathrm{loss}$ is the total power dissipated per unit time. Equivalently, $Q = \om_0/\Delta\om$, where $\Delta\om$ is the FWHM linewidth of the resonance. The photon lifetime is $\tau = Q/\om_0$. For a lossless dielectric slab, the only loss channel is radiation through the slab cladding, giving $Q = Q_\mathrm{rad}$.
+
+The modal volume $V$ quantifies the spatial extent of the field energy:
+\begin{equation}
+  V = \frac{\int \eps(\rvec)\,|\Efield(\rvec)|^2\,d^3r}{\max\left[\eps(\rvec)\,|\Efield(\rvec)|^2\right]}.
+  \label{eq:modal-volume}
+\end{equation}
+For photonic crystal cavities, $V$ can approach the diffraction limit $(\lambda/2n)^3$.
+
+The ratio $Q/V$ determines the Purcell factor:
+\begin{equation}
+  F_P = \frac{3}{4\pi^2}\left(\frac{\lambda}{n}\right)^3\frac{Q}{V},
+\end{equation}
+which measures the enhancement of spontaneous emission rate for a resonant dipole emitter inside the cavity. Both high $Q$ (narrow linewidth, long photon lifetime) and small $V$ (strong field concentration) are desirable for lasing applications.
+
+\section{Conventional defect geometries}
+\label{sec:conventional-defects}
+
+Several standard photonic crystal cavity designs have been explored in the literature:
+
+\paragraph{Point defect (L1 cavity).} Removing a single hole from the lattice creates a mode near the center of the gap with the rotational symmetry of the surrounding lattice. Radiation quality factors are typically $Q \sim 10^3$--$10^4$ without further optimization.
+
+\paragraph{L3 cavity.} Three missing collinear holes produce a strongly directional mode. Nudging the end holes outward by a fraction of $a$ reduces radiation coupling and raises $Q$ above $10^5$.
+
+\paragraph{Heterostructure cavity.} A smoothly varying local lattice constant (and hence local band-edge frequency) creates a photon potential well. Gradual profiles suppress out-of-plane scattering, enabling $Q > 10^6$.
+
+\paragraph{Nanobeam cavity.} A one-dimensional suspended beam with tapered periodicity concentrates mode volume below $(\lambda/n)^3$ while maintaining $Q > 10^5$. The combination of very small $V$ and high $Q$ makes nanobeam cavities ideal for single-photon emitters and optomechanical systems.
+
+Each of these designs relies on a translationally motivated perturbation: a hole is removed, shifted, or the local lattice constant is changed. The surrounding crystal retains its translational symmetry up to the defect boundary. Photonic disclination cavities are fundamentally different: the organizing principle of the defect is rotational. The local symmetry group of the cavity core differs from that of the surrounding bulk, and this difference drives the appearance of modes with angular phase structure that no conventional cavity can produce.
+
+\section{Numerical simulation of cavity modes}
+\label{sec:numerical}
+
+Two complementary numerical approaches are used in photonic crystal cavity analysis:
+
+\paragraph{Frequency-domain (MPB).} The eigenvalue problem $\hat{\Theta}\Hfield = (\om/c)^2\Hfield$ is solved in a plane-wave basis for a supercell containing the defect. The cavity mode appears as a nearly flat band in the supercell band structure. MPB is accurate for lossless structures and provides eigenvectors (field profiles) directly.
+
+\paragraph{Time-domain (MEEP/FDTD).} A Gaussian pulse excites all modes in a frequency range. The time trace of the field is analyzed by Harminv to extract resonant frequencies and decay rates $\gamma = \om_0/(2Q)$. Field profiles are obtained by running the simulation at the resonance frequency and recording the steady-state distribution. MEEP naturally includes radiation losses through the simulation boundaries (PML).
+
+In the workflow implemented in \texttt{app.py}, the band structure step uses MPB to identify the gap, while the field simulation step uses FDTD with Harminv to locate cavity resonances, extract $H_z$ profiles, and estimate $Q$.
+
+%==============================================================================
+\chapter{Photonic Disclination Cavities}
+\label{chap:disclinations}
+%==============================================================================
+
+\section{Disclinations in condensed matter}
+\label{sec:disclinations-cm}
+
+A disclination is a topological defect characterized by rotational mismatch in an ordered medium. It was introduced by Volterra in the context of elastic continua and is distinguished from a dislocation, which involves translational misfit. Formally, the Frank vector $\vb{\Omega}$ characterizes a disclination: it is the rotation required to close a Burgers circuit enclosing the defect core. For a two-dimensional crystal with $n$-fold symmetry $C_n$, the allowed Frank angles are multiples of $2\pi/n$.
+
+In three-dimensional crystals, the elastic energy of an isolated disclination scales as $R^2$ (where $R$ is the sample dimension), making them energetically costly and rare in bulk materials. However, in thin films and in engineered photonic structures, disclinations can be precisely introduced by design. The elastic cost is either irrelevant (engineered structures) or mitigated by pairing disclinations of opposite sign (dipolar pairs, which have finite total energy). In the photonic context, the ``elastic'' energy is replaced by the electromagnetic mode energy, and the relevant question is how the defect core geometry selects which in-gap modes are localized.
+
+Recent work on topological crystalline insulators has established a bulk-disclination correspondence: in a crystal with a topologically non-trivial bulk band structure, a disclination core necessarily traps a localized in-gap state. The photonic disclination cavity exploits exactly this correspondence: by placing the disclination in the middle of a photonic crystal that is topologically non-trivial (in the 2D SSH sense), one is guaranteed to produce a localized in-gap cavity mode.
+
+\section{The Volterra construction for photonic crystals}
+\label{sec:volterra}
+
+The Volterra construction for a photonic disclination cavity starts from a base $C_4$ square-lattice structure. As implemented in \texttt{volterra\_c4\_to\_cn\_gif.py}, the construction proceeds in four steps:
+
+\paragraph{Step 0: Base $C_4$ lattice.} The base structure is a square lattice with the four-site motif, truncated to a circular domain of radius $R_\mathrm{cav} = 3.35a$ (parameter \texttt{cavity\_radius}). Each unit cell contains four air holes at $(\pm\delta,\pm\delta)$ with $\delta = 0.34a$ (parameter \texttt{offset}). Hole radius $r = 0.1a$ (parameter \texttt{r\_hole}) is used in the Volterra animation scripts for visual clarity, while larger $r$ values are used in the MPB calculations.
+
+\paragraph{Step 1: Angular sector insertion.} The excess angle required to go from $C_4$ to $C_n$ is
+\begin{equation}
+  \omega = 2\pi\,\frac{n-4}{4}.
+  \label{eq:volterra-omega}
+\end{equation}
+For $n = 5$, $\omega = \pi/2$ ($90°$); for $n = 6$, $\omega = \pi$ ($180°$); for $n = 3$, $\omega = -\pi/2$ (sector removal). The lattice coordinates are converted to polar form $(r_i, \theta_i)$. All points with $\theta_i \geq \theta_\mathrm{cut} = 0$ are angularly displaced by $+\omega$, opening a gap in the polar angle distribution. Points from the base lattice with $\theta_i \in [\theta_\mathrm{cut}, \theta_\mathrm{cut} + \omega)$ are copied and inserted into this gap, filling the new angular sector.
+
+\paragraph{Step 2: Angular compression.} After insertion, the total angular range is $2\pi + \omega$. All angular coordinates are rescaled by
+\begin{equation}
+  \alpha = \frac{2\pi}{2\pi+\omega}
+  \label{eq:alpha}
+\end{equation}
+to close the gap and restore a simply connected circular domain. Radial coordinates are preserved. The result is a $C_n$-symmetric lattice.
+
+\paragraph{Step 3: Core pull.} The $n$ holes nearest to the origin (the first ring of the core) are moved radially inward: their radial coordinate $r$ is replaced by $(1-c)r$, where $c \in [0,1]$ is the core pull parameter. Large $c$ contracts the core, changing intra-core coupling and selecting the mode character.
+
+\paragraph{Step 4: Second-ring angular displacement.} The $2n$ holes in the second ring (positions $n$ through $3n-1$ in the radially sorted list) are alternately displaced in angle by $\pm\Delta\theta = \pm d\cdot\pi/(2n)$, where $d \in [0,1]$ is the displacement strength and the parity selector $s \in \{0,1\}$ controls the sign pattern. This breaks additional mirror symmetries and selects between vortex and anti-vortex modes.
+
+The complete parameter set is summarized in \tabref{tab:volterra-params}.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Volterra construction parameters and their effect on the photonic disclination cavity.}
+  \label{tab:volterra-params}
+  \begin{tabular}{llp{7cm}}
+    \toprule
+    Parameter & Symbol & Effect \\
+    \midrule
+    Rotational symmetry & $n$ & Determines $C_n$ core symmetry and Frank angle $\omega$ \\
+    Core pull & $c$ & Radial contraction of first ring; selects trivial vs.\ topological core \\
+    Ring displacement & $d$ & Alternating angular shift of second ring; selects vortex vs.\ anti-vortex \\
+    Parity & $s$ & Sign pattern of ring shift; determines angular momentum sign \\
+    Cavity radius & $R_\mathrm{cav}$ & Radial extent of defect region \\
+    Offset & $\delta$ & Topological phase of surrounding lattice \\
+    Hole radius & $r$ & Dielectric contrast and fill fraction \\
+    Cut angle & $\theta_\mathrm{cut}$ & Angular position of Volterra cut \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\section{Symmetry classification of cavity modes}
+\label{sec:mode-symmetry}
+
+The $C_n$-symmetric disclination core has a point group that differs from the $C_4$ symmetry of the surrounding lattice. The modes of the cavity can be classified by their transformation properties under $C_n$ rotation. For $n=5$ ($C_5$ group), the irreducible representations are labeled by angular momentum $\ell \in \{0, \pm1, \pm2\}$ (mod 5).
+
+The magnetic field $H_z$ of a TE-like slab mode can be expanded in cylindrical harmonics:
+\begin{equation}
+  H_z(r, \phi) = \sum_m f_m(r)\,e^{im\phi}.
+  \label{eq:multipole-Hz}
+\end{equation}
+For a mode with $C_5$ angular momentum $\ell$, only terms with $m = \ell + qn$ (integer $q$) are non-zero. Thus in the weakly-confined (continuum) limit, only the $m=\ell$ term dominates.
+
+The electric field is derived from $H_z$ via the TE Maxwell curl relation. In polar coordinates, for a 2D slab:
+\begin{equation}
+  \Efield \approx \frac{1}{i\om\eps_0\eps}\!\left(\frac{1}{r}\,\partial_\phi H_z\,\uv{r} - \partial_r H_z\,\hat{\phi}\right).
+  \label{eq:E-from-Hz}
+\end{equation}
+Decomposing into circular polarization basis vectors $\hat{\vb{e}}_{R,L} = (\uv{x}\mp i\uv{y})/\sqrt{2}$, the result for $\ell = 0$ (dominant $m=0$ term, $f_0(r)$ real and radial) is
+\begin{equation}
+  \Efield_{\ell=0} \approx -\frac{i f_0'(r)}{\sqrt{2}\om\eps_0\eps}\!\left(e^{i\phi}\hat{\vb{e}}_R - e^{-i\phi}\hat{\vb{e}}_L\right),
+  \label{eq:E-ell0}
+\end{equation}
+which is a radially polarized vector beam (polarization vortex). The polarization orientation winds by $2\pi$ around the beam axis, corresponding to a topological charge of $+1$ for the polarization singularity. For $|\ell|=2$, the leading electric field has the structure of a hybrid $\mathrm{HE}^{o,e}_{2,1}$ mode, with a ring-shaped intensity and mixed polarization texture.
+
+\section{Core geometry and mode selection}
+\label{sec:core-geometry}
+
+The relationship between core geometry and mode character is central to photonic disclination cavity physics. For the $C_5$ structure:
+
+\paragraph{Expanded core ($c \approx 0$, natural Volterra spacing).} The intra-core coupling is set by the post-compression spacing of the first ring. For small $c$, this coupling resembles the bulk inter-cell coupling, placing the core in the topological phase of the local SSH problem. The defect mode has $\ell = 0$ character and the emitted beam is a polarization vortex (radially polarized). The $H_z$ profile has a maximum at the center.
+
+\paragraph{Contracted core ($c > 0$, first ring pulled inward).} Moving the core holes inward increases the intra-core coupling. The core enters the trivial phase of its local SSH problem, but the boundary mismatch with the surrounding topological crystal still produces in-gap states, now with $|\ell| \neq 0$ character. For $n=5$, the dominant mode has $|\ell|=2$, giving a doughnut-shaped intensity and hybrid vector beam polarization.
+
+\paragraph{Modified second ring ($d > 0$).} Alternating angular displacement of the second-ring holes breaks the remaining mirror symmetry of the cavity. For appropriate $d$ and parity $s$, this selects between the degenerate $+\ell$ and $-\ell$ pair, producing a mode with definite handedness. Configurations with $s=0$ and $s=1$ produce $\ell = +2$ and $\ell = -2$ respectively, confirmed by the experimental self-interference measurements in \textit{Nature Photonics} (2023).
+
+\section{Coupling between angular momentum channels}
+\label{sec:c5-coupling}
+
+An important subtlety is the role of $C_5$ symmetry in coupling different $\ell$ channels. Under $C_5$ rotation, $\ell$ and $\ell' = \ell + 5$ transform identically. Therefore, in the multipole expansion, terms with $m = \ell$ and $m = \ell \pm 5$ are symmetry-allowed to mix. For $|\ell|=2$, the next contributing terms are $m = 7$ and $m = -3$.
+
+This mixing affects the far-field intensity pattern. The $m=0$ and $m=\pm 2$ terms are ``dark'' in the sense that they radiate weakly out of the slab plane (their in-plane $\kvec$ components place them outside the light cone for typical slab parameters). The dominant out-of-plane radiation comes from the $m = \pm 5, \pm 7$ terms, which have sufficient in-plane wave vector to couple to radiation modes.
+
+Consequently, the experimentally observed mode images show a hexapetal (six-lobe) pattern rather than the doughnut expected from $m=\pm 2$ alone: the interference of the $m=2$ and $m=7$ terms (with comparable radiated amplitudes) produces the six lobes. This is an experimentally confirmed prediction of the multipole theory presented in the supplementary material of the disclination nanolaser paper.
+
+\section{DXF export and COMSOL simulation pipeline}
+\label{sec:dxf-comsol}
+
+The transition from Python geometry to COMSOL finite-element simulation uses the DXF file format. The scripts \texttt{dxf.py} and \texttt{dxf\_uniform.py} implement a Kivy graphical interface in which all Volterra parameters can be interactively adjusted, with a live preview of the resulting hole arrangement. The export function creates a standards-compliant DXF file using the \texttt{ezdxf} library, with each air hole represented as a circle entity:
+
+\begin{lstlisting}[language=Python, caption={Core DXF export logic (schematic from \texttt{dxf\_uniform.py}).}]
+import ezdxf
+import numpy as np
+
+doc = ezdxf.new()
+msp = doc.modelspace()
+for (x, y) in coords:
+    msp.add_circle(center=(float(x), float(y)),
+                   radius=float(r_hole))
+doc.saveas("disclination_cavity.dxf")
+\end{lstlisting}
+
+In COMSOL, the DXF is imported as the geometry base layer. Boolean difference operations cut the holes from a rectangular domain of background material with $\eps = \eps_\mathrm{bg}$. The built-in mesher generates a free-triangular mesh with refinement near hole boundaries. The ``Eigenfrequency'' study then finds the complex eigenfrequencies $\tilde{\om} = \om_0 - i\om_0/(2Q)$ using the ARPACK solver with a perfectly matched layer (PML) at the domain boundary to absorb outgoing radiation. The radiation quality factor $Q_\mathrm{rad}$ is extracted from $Q = \mathrm{Re}(\tilde{\om})/(2\,|\mathrm{Im}(\tilde{\om})|)$.
+
+COMSOL results confirm in-gap modes whose frequencies match MPB predictions (adjusted for the finite supercell). The $H_z$ profiles show the symmetry predicted by the multipole analysis: rotationally symmetric central maximum for $\ell=0$ modes, and the characteristic hexapetal pattern for $|\ell|=2$ modes.
+
+%==============================================================================
+\chapter{Vortex States, Nanolasing, and Structured Light}
+\label{chap:vortex-nanolasing}
+%==============================================================================
+
+\section{Structured optical fields}
+\label{sec:structured-light}
+
+Structured optical fields extend beyond the scalar plane wave approximation by exhibiting spatial variation of amplitude, phase, and polarization simultaneously. The most important classes for the present work are:
+
+\paragraph{Optical vortex beams.} These carry orbital angular momentum (OAM) of $\ell\hbar$ per photon. The electric field has the azimuthal phase dependence
+\begin{equation}
+  E(\rho,\phi,z) \propto e^{i\ell\phi}\,f(\rho,z),
+  \label{eq:vortex-phase}
+\end{equation}
+where $\ell \in \mathbb{Z}$ is the topological charge. The phase winds by $2\pi\ell$ around the beam axis, producing a phase singularity at $\rho = 0$ and a doughnut-shaped intensity profile. The OAM dimension provides a set of orthogonal channels for data encoding, since beams with different $\ell$ values are exactly orthogonal in the paraxial approximation.
+
+\paragraph{Cylindrical vector beams.} These have spatially varying but cylindrically symmetric polarization. Radially polarized beams (polarization pointing outward from the axis) and azimuthally polarized beams (polarization tangential) are the two fundamental types. They carry no net OAM but exhibit a topological charge in their polarization field.
+
+\paragraph{Hybrid (HE/EH) modes.} These combine OAM and polarization texture. Hybrid modes $\mathrm{HE}_{2,1}^{o,e}$ of an optical fiber have mixed radial/azimuthal polarization and polarization azimuth winding of $\pm 1$, making them the natural electromagnetic eigenstate of a circularly symmetric guide.
+
+Traditional generation of all these beam types requires bulk optical elements: spiral phase plates, $q$-plates, spatial light modulators, or holographic plates. The disclination cavity eliminates the need for these elements by making the vortex or vector mode the natural eigenmode of the resonator.
+
+\section{Orbital angular momentum of light}
+\label{sec:oam}
+
+The OAM of a paraxial optical beam is
+\begin{equation}
+  L_z = \frac{\eps_0}{2\om}\,\mathrm{Im}\int \left(E_x^*\,\partial_\phi E_x + E_y^*\,\partial_\phi E_y\right)r\,dr\,d\phi,
+\end{equation}
+which for a pure $e^{i\ell\phi}$ mode evaluates to $L_z = \ell U/\om$, where $U$ is the total field energy. Thus each photon in a pure OAM mode carries $\ell\hbar$ of orbital angular momentum. This OAM can be transferred to matter (rotation of absorptive particles, helical wavefront sensing) and to quantum systems (atomic transitions with $\Delta m = \pm\ell$).
+
+OAM multiplexing is particularly attractive for free-space or on-chip communications: beams with different $\ell$ values propagate collinearly without crosstalk in an ideal system, providing an additional degree of freedom for increasing spectral efficiency beyond what wavelength, polarization, and time-division multiplexing offer.
+
+\section{The photonic disclination nanolaser}
+\label{sec:disclination-nanolaser}
+
+The experimental demonstration of vortex nanolasing from photonic disclination cavities was reported in \textit{Nature Photonics} (2023) by Shang et al.\ The device consisted of a $C_5$-symmetric photonic disclination cavity patterned in an InGaAsP multiple quantum well (MQW) slab on an InP substrate. InGaAsP MQW provides optical gain near $\lambda = \SI{1550}{\nano\metre}$ under optical pumping. The photonic crystal parameters were approximately $a \approx \SI{470}{\nano\metre}$, $r \approx 0.27a$, and slab thickness $t \approx 0.55a$, placing the TE-like band gap near the gain peak.
+
+Three distinct disclination cavity configurations were studied, differing in core pull $c$ and ring displacement $d$:
+
+\begin{enumerate}
+  \item \textbf{Unmodified boundary (natural Volterra, $c \approx 0$, $d = 0$):} Supports a mode with $\ell = 0$, emitting a polarization vortex (radially polarized beam).
+  \item \textbf{Modified boundary, parity $s=0$ ($c > 0$, $d > 0$):} Supports a mode with $\ell = +2$, emitting a hybrid vector beam with positive angular momentum.
+  \item \textbf{Modified boundary, parity $s=1$ ($c > 0$, $d > 0$):} Supports a mode with $\ell = -2$, emitting the conjugate hybrid vector beam.
+\end{enumerate}
+
+\subsection{Lasing characterization}
+\label{subsec:lasing}
+
+Lasing was observed for all three configurations under pulsed optical pumping at $\lambda_\mathrm{pump} = \SI{785}{\nano\metre}$. Light-light (L-L) curves in log-log representation showed a clear threshold kink, confirming lasing action. The lasing wavelength fell near \SI{1550}{\nano\metre} for all configurations, consistent with the designed band gap position. The spectral linewidth collapsed from broad ASE below threshold to a sharp peak with $\Delta\lambda < \SI{1}{\nano\metre}$ above threshold, corresponding to $Q \gtrsim 1500$.
+
+The lasing threshold pump power was relatively low, enabled by the small modal volume of the disclination cavity ($V \sim (\lambda/n)^3$) and by the topological protection of the in-gap mode from perturbative coupling to radiation modes that respect the $C_5$ symmetry.
+
+\subsection{Mode imaging and polarization analysis}
+\label{subsec:mode-imaging}
+
+Spatial mode profiles were imaged using an infrared CCD at the focal plane of a high-NA objective. Configuration (1) showed a bright central spot consistent with the $m=0$ dominant multipole. Configurations (2) and (3) showed ring-shaped profiles with six intensity maxima arranged in a ring, consistent with the $m=2$ and $m=7$ multipole interference discussed in \secref{sec:c5-coupling}.
+
+Polarization-resolved imaging was performed by inserting a linear polarizer before the detector and rotating it in steps of $10°$. Configuration (1) showed the characteristic four-lobed pattern of a radially polarized beam in each polarizer orientation, with intensity maxima parallel and perpendicular to the polarizer and minima at $\pm 45°$. This is the expected signature of a radially polarized cylindrical vector beam.
+
+For configurations (2) and (3), the polarization analysis revealed a more complex texture: the Stokes parameter images showed a spatially varying $S_3$ component (ellipticity) arranged in a pattern with winding number 1 around the beam axis. The intra-modal phase $\arctan(S_3/S_2)$, computed from the measured Stokes parameters, showed a clear $2\pi$ phase winding for configuration (2) and a $-2\pi$ winding for configuration (3), consistent with $\ell = +2$ and $\ell = -2$ respectively.
+
+\subsection{Off-center self-interference measurement}
+\label{subsec:interference}
+
+To directly verify the OAM content of the emitted beams, off-center self-interference measurements were performed. The beam was split by a 50/50 beam splitter; one copy was laterally displaced by approximately 1 beam radius and recombined with the undisplaced copy on a CCD. For a beam with topological charge $\ell$, this produces an interference pattern with $|\ell|$ fork-shaped fringe dislocations, whose orientation identifies the sign of $\ell$.
+
+Configuration (1) showed a smooth fringe pattern without fork dislocations (no OAM content in the phase profile, consistent with $\ell=0$ for the phase). Configurations (2) and (3) showed two fork dislocations each, with opposite orientations, confirming $\ell = +2$ and $\ell = -2$. These measurements, combined with the Stokes parameter analysis, provide a complete characterization of the structured-light emission from the disclination nanolaser.
+
+\section{Comparison with the tunable OAM microring laser}
+\label{sec:comparison}
+
+An alternative approach to tunable vortex laser emission was demonstrated by Zhang et al.\ in \textit{Science} (2020). Their device uses a microring resonator with angular gratings on the inner sidewall, supporting whispering-gallery modes (WGMs) of order $N=34$. The emitted OAM charge is $\ell = C(N-M-1)$ where $M=32$ is the grating scatter number and $C=\pm 1$ is the WGM chirality. Non-Hermitian symmetry breaking via an external bus waveguide with selective gain/loss is used to select $C$, producing $|\ell|=1$ emission. A radial polarizer converts circularly polarized emission to radially polarized, conserving total angular momentum $J = \ell + s$ and thereby accessing $|\ell|=2$. The system produces all five OAM states $\ell \in \{-2,-1,0,+1,+2\}$ at a single wavelength $\lambda = \SI{1492.6}{\nano\metre}$.
+
+\tabref{tab:laser-comparison} summarizes the comparison between the two approaches.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Comparison of the photonic disclination nanolaser and the non-Hermitian tunable OAM microring laser.}
+  \label{tab:laser-comparison}
+  \begin{tabular}{lp{5cm}p{5cm}}
+    \toprule
+    Feature & Disclination nanolaser & Non-Hermitian microring \\
+    \midrule
+    OAM selection & Core geometry ($c$, $d$, $s$) & Non-Hermitian pump control \\
+    Tuning method & Structural (set at fabrication) & Dynamic (optical pump switching) \\
+    Beam shaping & Intrinsic (cavity mode) & Radial polarizer for $|\ell|=2$ \\
+    Footprint & ${\sim}5a \times 5a$ & Diameter \SI{7}{\micro\metre} \\
+    OAM states & $\ell = 0, \pm2$ & $\ell = 0, \pm1, \pm2$ \\
+    Wavelength & ${\sim}$\SI{1550}{\nano\metre} & \SI{1492.6}{\nano\metre} \\
+    Gain medium & InGaAsP MQW slab & InGaAsP MQW microring \\
+    Key advantage & Intrinsic vortex mode & Room-temperature OAM tuning \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+The disclination approach has the advantage of intrinsic structured-light generation: the phase and polarization structure of the emitted beam is determined entirely by the cavity geometry, without any external optics. The microring approach has the advantage of dynamic tunability: by switching the control pump arm, the OAM state can be changed on timescales potentially reaching the picosecond regime (limited by the semiconductor optical response).
+
+%==============================================================================
+\chapter{Computational Tools and Simulation Results}
+\label{chap:computation}
+%==============================================================================
+
+\section{Software framework overview}
+\label{sec:software}
+
+The computational work for this thesis was organized around four primary tools:
+
+\begin{enumerate}
+  \item \textbf{MIT Photonic Bands (MPB)}: Frequency-domain eigensolver for photonic band structures. Used for bulk band structure calculation and gap identification.
+  \item \textbf{MIT Electromagnetic Equation Propagation (MEEP)}: FDTD solver for time-domain field simulation. Used for cavity mode identification (via Harminv), $Q$ estimation, and $H_z$ field profile extraction.
+  \item \textbf{Custom Python scripts}: Volterra construction visualization and animation (\texttt{numpy}, \texttt{matplotlib}, \texttt{imageio}); DXF export (\texttt{ezdxf}, \texttt{kivy}).
+  \item \textbf{COMSOL Multiphysics}: Finite-element eigenfrequency solver. Used for high-resolution 2D mode profiles and $Q$ computation with PML boundaries.
+\end{enumerate}
+
+\section{Band structure workflow}
+\label{sec:band-workflow}
+
+The MPB band structure workflow is implemented in \texttt{Unit\_cell.ipynb} Cell 3:
+
+\begin{lstlisting}[language=Python, caption={MPB setup for the square-lattice four-site photonic crystal (from \texttt{Unit\_cell.ipynb}).}]
+import meep as mp
+from meep import mpb
+
+a = 1.0           # normalized lattice constant
+r = 0.2 * a       # hole radius
+eps_bg = 3.42**2  # background permittivity (silicon)
+offset = 0.32 * a # intra-cell site offset
+
+geometry = [
+    mp.Cylinder(radius=r, height=mp.inf,
+                center=mp.Vector3(+offset, +offset),
+                material=mp.Medium(epsilon=1.0)),
+    mp.Cylinder(radius=r, height=mp.inf,
+                center=mp.Vector3(+offset, -offset),
+                material=mp.Medium(epsilon=1.0)),
+    mp.Cylinder(radius=r, height=mp.inf,
+                center=mp.Vector3(-offset, +offset),
+                material=mp.Medium(epsilon=1.0)),
+    mp.Cylinder(radius=r, height=mp.inf,
+                center=mp.Vector3(-offset, -offset),
+                material=mp.Medium(epsilon=1.0)),
+]
+
+Gamma = mp.Vector3(0, 0, 0)
+X     = mp.Vector3(0.5, 0, 0)
+M     = mp.Vector3(0.5, 0.5, 0)
+
+ms = mpb.ModeSolver(
+    geometry=geometry,
+    geometry_lattice=mp.Lattice(size=mp.Vector3(1, 1)),
+    k_points=mp.interpolate(20, [Gamma, X, M, Gamma]),
+    resolution=100,
+    num_bands=6,
+)
+ms.run_te()
+\end{lstlisting}
+
+The \texttt{run\_te()} call iterates over the $k$-point path and computes the six lowest TE bands using preconditioned conjugate gradient optimization in the plane-wave basis. Results are stored in \texttt{ms.all\_freqs} (normalized frequencies indexed by $k$-point and band). The band gap is identified by finding the maximum of band 1 and the minimum of band 2 over all $k$-points.
+
+For the above parameters, the TE gap spans $a/\lambda \approx 0.304$ to $0.404$, giving a fractional width of approximately 29\%. At $a = \SI{500}{\nano\metre}$, this corresponds to $\lambda \approx \SI{1238}{\nano\metre}$ to $\SI{1644}{\nano\metre}$, comfortably containing the telecom C-band.
+
+\section{Tight-binding and electromagnetic gap comparison}
+\label{sec:tb-gap-comparison}
+
+The tight-binding band structure computed in \texttt{Unit\_cell.ipynb} Cell 2 uses $t_1 = -0.2$, $t_2 = -1.0$, and $t_\mathrm{nnn} = -0.707$, giving a band gap of $\Delta E \approx 1.6|t_2|$ between bands 1 and 2. The qualitative features match the MPB result:
+
+\begin{itemize}
+  \item Four bands symmetric about zero energy.
+  \item Flat bands at the $M$ point (reflecting the weak-coupling limit of the SSH model).
+  \item A clear gap between lower and upper band pairs.
+  \item Bands 1 and 2 are not particle-hole symmetric due to NNN hoppings, consistent with the electromagnetic asymmetry between TE bands.
+\end{itemize}
+
+The NNN hopping $t_\mathrm{nnn}$ is essential for a faithful reproduction of the electromagnetic dispersion. Without it (NNN $= 0$), bands 1 and 2 are exactly degenerate at $\Gamma$ and the model has particle-hole symmetry that the electromagnetic system does not possess.
+
+\section{Volterra construction animation}
+\label{sec:volterra-animation}
+
+The Volterra animation scripts generate PNG frames for each stage of the construction and combine them into a GIF. The center-origin version (\texttt{volterra\_c4\_to\_cn\_gif.py}) places the disclination at the coordinate origin; the edge-origin version (\texttt{volterra\_c4\_to\_cn\_gif\_edge.py}) places it at a user-specified edge point, which is relevant for studying disclination dipoles and for lattice geometries where the natural Volterra cut originates from a lattice point rather than a cell center.
+
+Key animation parameters:
+\begin{itemize}
+  \item \texttt{frames\_open\_cut = 18}: frames for the angular opening step.
+  \item \texttt{frames\_insert\_sector = 18}: frames for the sector insertion.
+  \item \texttt{frames\_compress = 24}: frames for the angular compression.
+  \item \texttt{frames\_core\_pull = 16}: frames for the radial core contraction.
+  \item \texttt{frames\_second\_group = 16}: frames for the second-ring displacement.
+  \item \texttt{fps = 12}: output frame rate.
+\end{itemize}
+
+The flag \texttt{angular\_only = True} restricts the animation to Steps 1 and 2, omitting the core pull and ring displacement. This is useful for pedagogical presentation of the pure Volterra construction before the cavity engineering modifications.
+
+The drawing function uses \texttt{matplotlib.patches.Circle} to render each hole as a filled disc on a dark background, with the color \texttt{\#00d4ff} for visual clarity. The title of each frame indicates the current step and the values of $c$ and $d$ for reference.
+
+\section{MEEP FDTD simulation workflow}
+\label{sec:meep-workflow}
+
+The full MEEP simulation workflow is implemented in \texttt{app.py} as a six-step pipeline:
+
+\begin{enumerate}
+  \item \textbf{Setup Sim}: Creates the MEEP geometry from the disclination hole coordinates (imported from the Volterra construction). Defines the simulation cell, material properties, PML boundaries, and sources.
+  \item \textbf{Calc Bands (MPB)}: Runs the MPB band structure calculation to identify the gap before running the full FDTD simulation.
+  \item \textbf{Show Bands}: Plots the band structure with the gap region highlighted.
+  \item \textbf{Run Sim}: Executes the FDTD simulation with a localized broadband Gaussian source. Records the time-domain $H_z$ field at monitor points inside the cavity.
+  \item \textbf{Hz Modes}: Applies the Harminv harmonic inversion algorithm to the recorded time trace to extract cavity resonant frequencies and decay rates. Also computes the 2D fast Fourier transform (FFT) of the $H_z$ field profile to analyze angular momentum content.
+  \item \textbf{Export}: Saves all simulation data (field arrays, frequencies, $Q$ values) to \texttt{.npy} files for subsequent post-processing and figure generation.
+\end{enumerate}
+
+The Harminv analysis in Step 5 provides the cavity resonant frequency $\om_0$ and the complex decay rate, from which $Q = \om_0/(2\gamma)$ is extracted. The 2D FFT of $H_z(\rvec)$ gives $\tilde{H}_z(\kvec)$, and the azimuthal Fourier decomposition of $\tilde{H}_z$ in the annular region around the core yields the amplitudes $|F_m(k)|$ of each angular momentum component, directly probing the multipole decomposition \eqnref{eq:multipole-Hz}.
+
+\section{Parameter sweeps}
+\label{sec:param-sweeps}
+
+Parameter sweeps of the band structure were implemented in \texttt{Extras\_unitcell.ipynb}. The main findings are:
+
+\paragraph{Offset sweep ($\delta = 0.10a$--$0.45a$, fixed $r = 0.20a$).} For $\delta < 0.15a$, no gap opens (four holes nearly coincident, structure approximates a single-hole cell). The gap opens above the topological transition at $\delta \approx 0.25a$ and reaches maximum width at $\delta \approx 0.32a$--$0.35a$. Above $\delta \approx 0.40a$, holes approach the cell boundary and the gap closes.
+
+\paragraph{Radius sweep ($r = 0.05a$--$0.30a$, fixed $\delta = 0.32a$).} The gap opens at $r \approx 0.10a$ (minimum dielectric contrast for gap formation) and widens monotonically to $r \approx 0.25a$. Above $r \approx 0.28a$, holes begin to overlap in the compressed disclination structure and the effective medium approximation breaks down.
+
+These sweeps confirm that $\delta = 0.32a$, $r = 0.20a$ lies in a robust, fully open-gap regime, well away from any topological or filling-fraction transitions.
+
+%==============================================================================
+\chapter{Conclusion and Future Directions}
+\label{chap:conclusion}
+%==============================================================================
+
+\section{Summary of the thesis}
+\label{sec:summary}
+
+This thesis has presented a study of photonic disclination cavities spanning electromagnetic theory, topological band physics, optical mode engineering, and experimental context. The work was organized as a progression from first principles to experimental results:
+
+The Maxwell eigenvalue formulation established the formal basis for photonic crystals, and Bloch's theorem was used to derive the photonic band structure and explain the origin of photonic band gaps. The two-dimensional SSH quadrumer tight-binding model was developed as a concrete analogy for the square-lattice four-site unit cell, with the hopping ratio $|t_2/t_1|$ controlling the topological phase. Numerical MPB band structure calculations confirmed the existence of a complete TE band gap at both telecom ($a = \SI{500}{\nano\metre}$, $\lambda \approx \SI{1550}{\nano\metre}$) and THz ($a = \SI{50}{\micro\metre}$) scales, with a fractional gap width of approximately 29\% for the chosen parameters.
+
+The Volterra construction for photonic disclinations was described in detail and implemented in animated Python scripts. The four-step process (sector insertion, angular compression, core pull, second-ring displacement) was shown to produce a $C_n$-symmetric structure from a $C_4$ base lattice, with the core geometry parameters $c$ (pull) and $d$ (displacement) controlling which in-gap modes are selected. The multipole expansion of $H_z$ in cylindrical harmonics was used to analyze the angular momentum content of the cavity modes and connect it to the polarization structure of the emitted beam: $\ell = 0$ for radially polarized vortex emission (expanded core) and $|\ell| = 2$ for hybrid vector beam emission (contracted/modified core). The $C_5$ symmetry coupling between $\ell$ and $\ell\pm 5$ channels was identified as responsible for the hexapetal intensity pattern seen in experiment.
+
+The experimental realization of vortex nanolasing in photonic disclination cavities on an InGaAsP MQW platform was reviewed in detail. The device characterization results (lasing threshold, mode imaging, Stokes parameter analysis, off-center self-interference) all confirm the theoretical mode assignments. A structured comparison with the non-Hermitian tunable OAM microring laser highlighted the complementary strengths of the two approaches.
+
+\section{Original contributions}
+\label{sec:contributions}
+
+The original contributions of this thesis are:
+
+\begin{enumerate}
+  \item A self-contained derivation of the photonic crystal eigenvalue problem connecting Maxwell's equations to the SSH tight-binding analogy and topological band physics.
+  \item Numerical MPB band structure calculations for the square-lattice four-site photonic crystal at telecom and THz scales, with a comparison to the tight-binding band structure including NNN hoppings.
+  \item Implementation and animation of the complete Volterra construction from $C_4$ to $C_n$ with center-origin and edge-origin variants, including core pull and second-ring displacement steps.
+  \item Development of an interactive Kivy/ezdxf graphical tool for photonic disclination structure design and DXF export, enabling direct import into COMSOL Multiphysics.
+  \item A multipole-based analysis of the relationship between Volterra parameters and cavity mode angular momentum character, organized around the $C_5$ symmetry of the disclination core.
+  \item A comparative review of vortex nanolaser platforms, including tabulated comparison of the disclination cavity and non-Hermitian microring approaches.
+\end{enumerate}
+
+\section{Future directions}
+\label{sec:future}
+
+The following directions emerge naturally as extensions of this work:
+
+\paragraph{Three-dimensional FDTD.} Full 3D simulation of the slab geometry would accurately account for out-of-plane radiation losses and enable direct comparison between simulated and experimental $Q$ values. This requires significantly more computation than 2D but is feasible with modern GPU-accelerated FDTD codes.
+
+\paragraph{Electrical injection.} Current experimental demonstrations use optical pumping. Designing a p-i-n junction geometry around the $C_5$ disclination core, without breaking the rotational symmetry of the cavity mode, would enable electrically injected vortex lasers that are fully integrable with on-chip photonic circuits.
+
+\paragraph{Topological protection quantification.} Numerical studies adding random disorder (hole position fluctuations $\sim 5$--$10$\,nm) to the disclination cavity would determine whether the in-gap mode frequency and OAM character are robustly protected by the bulk topology, or whether they degrade rapidly with fabrication imperfections. This connects to the broader question of how the bulk-disclination correspondence behaves in the presence of symmetry-breaking disorder.
+
+\paragraph{Multi-disclination arrays and vortex lattices.} Pairs or arrays of disclinations with alternating Frank angles could create photonic structures with multiple co-resonant vortex cavities. The interference between cavity fields could produce optical vortex lattices, which are useful for optical trapping, quantum error correction schemes, and topological beam shaping.
+
+\paragraph{Integration with quantum emitters.} Positioning a quantum dot or color center at the $H_z$ maximum of a disclination cavity mode would couple the emitter preferentially to a specific OAM channel, creating a deterministic source of photons in a defined orbital angular momentum state. The Purcell factor $F_P = (3/4\pi^2)(\lambda/n)^3(Q/V)$ for a disclination cavity can be estimated to be $F_P \sim 10$--$100$ for realistic parameters, representing a significant enhancement.
+
+\paragraph{Nonlinear optics and frequency conversion.} A disclination cavity with high $Q$ and small $V$ in an electro-optic or second-order nonlinear material could enable efficient OAM-selective second-harmonic generation or spontaneous parametric down-conversion, where the OAM conservation law $\ell_\mathrm{pump} = \ell_\mathrm{signal} + \ell_\mathrm{idler}$ could be engineered by the disclination geometry.
+
+% =============================================================================
+\appendix
+% =============================================================================
+
+\chapter{Key Equations Reference}
+\label{app:equations}
+
+\paragraph{Maxwell master equation:}
+\begin{equation}
+  \nabla \times \left(\frac{1}{\eps(\rvec)}\,\nabla \times \Hfield(\rvec)\right)
+  = \left(\frac{\om}{c}\right)^2 \Hfield(\rvec).
+\end{equation}
+
+\paragraph{Bloch mode:}
+\begin{equation}
+  \Hfield_{n\kvec}(\rvec) = e^{i\kvec\cdot\rvec}\,\vb{u}_{n\kvec}(\rvec), \qquad \vb{u}_{n\kvec}(\rvec+\Rvec)=\vb{u}_{n\kvec}(\rvec).
+\end{equation}
+
+\paragraph{Quality factor and modal volume:}
+\begin{equation}
+  Q = \om_0\,\frac{U}{P_\mathrm{loss}}, \qquad
+  V = \frac{\int \eps\,|\Efield|^2\,d^3r}{\max[\eps\,|\Efield|^2]}, \qquad
+  F_P = \frac{3}{4\pi^2}\left(\frac{\lambda}{n}\right)^3\frac{Q}{V}.
+\end{equation}
+
+\paragraph{Vortex phase:}
+\begin{equation}
+  E(\rho,\phi,z) \propto e^{i\ell\phi}\,f(\rho,z), \qquad \ell \in \mathbb{Z}.
+\end{equation}
+
+\paragraph{Volterra excess angle and compression:}
+\begin{equation}
+  \omega = 2\pi\,\frac{n-4}{4}, \qquad \alpha = \frac{2\pi}{2\pi+\omega}.
+\end{equation}
+
+\paragraph{Multipole expansion of $H_z$:}
+\begin{equation}
+  H_z(r,\phi) = \sum_m f_m(r)\,e^{im\phi}; \quad m = \ell + qn \text{ for } C_n \text{ mode with OAM } \ell.
+\end{equation}
+
+\paragraph{Electric field from $H_z$ (TE slab):}
+\begin{equation}
+  \Efield \approx \frac{1}{i\om\eps_0\eps}\!\left(\frac{1}{r}\,\partial_\phi H_z\,\uv{r} - \partial_r H_z\,\hat{\phi}\right).
+\end{equation}
+
+\paragraph{2D SSH Bloch Hamiltonian (compact form):}
+\begin{equation}
+  H(\kvec) = t_1\,\Gamma_0 + t_2\,[\Gamma_x e^{-ik_xa} + \Gamma_y e^{-ik_ya} + \mathrm{h.c.}]
+              + t_\mathrm{nnn}\,[\Gamma_{xy}e^{-i(k_x+k_y)a} + \mathrm{h.c.}],
+\end{equation}
+where $\Gamma_0$, $\Gamma_x$, $\Gamma_y$, $\Gamma_{xy}$ are $4\times4$ matrices encoding the intra-cell, $x$-direction inter-cell, $y$-direction inter-cell, and diagonal NNN hoppings respectively.
+
+\chapter{Tight-Binding Model Parameters}
+\label{app:tb-params}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Tight-binding model parameters for the 2D SSH quadrumer band structure (from \texttt{Unit\_cell.ipynb}).}
+  \label{tab:tb-full}
+  \begin{tabular}{llll}
+    \toprule
+    Parameter & Symbol & Value & Unit \\
+    \midrule
+    Intra-cell hopping & $t_1$ & $-0.2$ & $|t_2|$ \\
+    Inter-cell hopping & $t_2$ & $-1.0$ & reference \\
+    NNN hopping & $t_\mathrm{nnn}$ & $-0.707$ & $|t_2|$ \\
+    Lattice constant & $a$ & 1.0 & normalized \\
+    Sites per unit cell & $N_s$ & 4 & -- \\
+    $k$-points per segment & $N_k$ & 3000 & -- \\
+    Band gap (TB) & $\Delta E$ & $1.6$ & $|t_2|$ \\
+    Band gap (MPB, norm.) & $\Delta(a/\lambda)$ & $0.10$ & -- \\
+    Fractional gap (MPB) & -- & $29\%$ & -- \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\chapter{Description of Computational Scripts}
+\label{app:scripts}
+
+The following scripts and notebooks were developed as part of this thesis:
+
+\begin{itemize}
+  \item \textbf{\texttt{Unit\_cell.ipynb}}: (a)~Visualizes the square-lattice unit cell with four-site motif, intra-cell and inter-cell coupling arrows labeled $t_1$ and $t_2$. (b)~Computes and plots the 2D SSH quadrumer tight-binding band structure along $\Gamma \to X \to M \to \Gamma$ with NNN hoppings; annotates gap value. (c)~Runs MPB for the electromagnetic photonic crystal at telecom ($a = \SI{500}{\nano\metre}$) and THz ($a = \SI{50}{\micro\metre}$) scales, side-by-side.
+
+  \item \textbf{\texttt{Hexagonal\_lattice\_band\_structure.ipynb}}: (a)~Draws the hexagonal parallelogram unit cell with corner and center air holes. (b)~Runs MPB for the hexagonal lattice. (c)~Computes the SSH topological phase diagram as $t_1/t_2$ is varied, identifying the critical ratio for gap closure.
+
+  \item \textbf{\texttt{Extras\_unitcell.ipynb}}: Parameter sweep cells producing animated GIFs of band structure evolution vs.\ offset $\delta$ and hole radius $r$. \textbf{Warning}: the default high-resolution parameters (resolution 100+, many frames) take up to one hour per cell. Reduce \texttt{resolution} to 30--50 for testing.
+
+  \item \textbf{\texttt{volterra\_c4\_to\_cn\_gif.py}}: Center-origin Volterra construction animation. Outputs \texttt{volterra\_c4\_to\_cn.gif}. Key parameters: \texttt{n} (target $C_n$), \texttt{c} (core pull), \texttt{d} (ring displacement), \texttt{s} (parity), \texttt{angular\_only} (flag to show only the topological steps).
+
+  \item \textbf{\texttt{volterra\_c4\_to\_cn\_gif\_edge.py}}: Edge-origin variant. Volterra cut and compression are performed about an offset origin point, useful for studying disclination dipoles and asymmetric placements.
+
+  \item \textbf{\texttt{dxf.py}}: Interactive Kivy application for photonic disclination structure design. Provides real-time visual preview and one-click DXF export. Supports all Volterra parameters plus custom origin modes (\texttt{center}, \texttt{edge}, \texttt{corner}).
+
+  \item \textbf{\texttt{dxf\_uniform.py}}: Variant with uniform (non-Volterra) disclination for comparison geometry and export.
+
+  \item \textbf{\texttt{app.py}}: Full MEEP simulation workflow (six-step pipeline): Setup, Calc Bands (MPB), Show Bands, Run Sim (FDTD + Harminv), Hz Modes (field analysis with 2D FFT, energy density, hotspot detection), Export (saves \texttt{.npy} arrays).
+
+  \item \textbf{\texttt{test\_band\_structure.py}}: Verification and sanity-check script. Confirms MEEP installation, tests basic simulation object creation, generates a synthetic band structure plot, and prints a workflow summary.
+\end{itemize}
+
+% =============================================================================
+% References
+% =============================================================================
+\IfFileExists{ref.bib}{%
+  \bibliographystyle{unsrt}
+  \bibliography{ref}
+}{%
+  \chapter*{References}
+  \addcontentsline{toc}{chapter}{References}
+
+  \begin{enumerate}
+    \item J.~D.~Joannopoulos, S.~G.~Johnson, J.~N.~Winn, and R.~D.~Meade, \textit{Photonic Crystals: Molding the Flow of Light}, 2nd ed. Princeton University Press, 2008.
+    \item S.~G.~Johnson and J.~D.~Joannopoulos, ``Block-iterative frequency-domain methods for Maxwell's equations in a planewave basis,'' \textit{Optics Express}, vol.~8, no.~3, pp.~173--190, 2001.
+    \item A.~F.~Oskooi et al., ``MEEP: A flexible free-software package for electromagnetic simulations by the FDTD method,'' \textit{Comput.\ Phys.\ Commun.}, vol.~181, no.~3, pp.~687--702, 2010.
+    \item W.~P.~Su, J.~R.~Schrieffer, and A.~J.~Heeger, ``Solitons in polyacetylene,'' \textit{Phys.\ Rev.\ Lett.}, vol.~42, no.~25, pp.~1698--1701, 1979.
+    \item W.~A.~Benalcazar, B.~A.~Bernevig, and T.~L.~Hughes, ``Quantized electric multipole insulators,'' \textit{Science}, vol.~357, no.~6346, pp.~61--66, 2017.
+    \item C.~W.~Peterson, W.~A.~Benalcazar, T.~L.~Hughes, and G.~Bahl, ``A quantized microwave quadrupole insulator with topologically protected corner states,'' \textit{Nature}, vol.~555, pp.~346--350, 2018.
+    \item S.~Mittal, V.~V.~Orre, G.~Zhu, M.~A.~Gorlach, A.~Poddubny, and M.~Hafezi, ``Photonic quadrupole topological phases,'' \textit{Nature Photonics}, vol.~13, pp.~692--696, 2019.
+    \item Y.~Liu et al., ``Bulk-disclination correspondence in topological crystalline insulators,'' \textit{Nature}, vol.~589, pp.~381--385, 2021.
+    \item S.~Shang et al., ``Vortex nanolaser based on a photonic disclination cavity,'' \textit{Nature Photonics}, vol.~17, pp.~560--566, 2023.
+    \item Z.~Zhang et al., ``Tunable topological charge vortex microlaser,'' \textit{Science}, vol.~368, no.~6492, pp.~760--763, 2020.
+    \item L.~Allen, M.~W.~Beijersbergen, R.~J.~C.~Spreeuw, and J.~P.~Woerdman, ``Orbital angular momentum of light and the transformation of Laguerre-Gaussian laser modes,'' \textit{Phys.\ Rev.\ A}, vol.~45, no.~11, pp.~8185--8189, 1992.
+    \item A.~M.~Yao and M.~J.~Padgett, ``Orbital angular momentum: origins, behavior and applications,'' \textit{Adv.\ Opt.\ Photonics}, vol.~3, pp.~161--204, 2011.
+    \item J.~Wang et al., ``Terabit free-space data transmission employing orbital angular momentum multiplexing,'' \textit{Nature Photonics}, vol.~6, pp.~488--496, 2012.
+    \item K.~Y.~Bliokh, F.~J.~Rodriguez-Fortuno, F.~Nori, and A.~V.~Zayats, ``Spin-orbit interactions of light,'' \textit{Nature Photonics}, vol.~9, pp.~796--808, 2015.
+    \item E.~Yablonovitch, ``Inhibited spontaneous emission in solid-state physics and electronics,'' \textit{Phys.\ Rev.\ Lett.}, vol.~58, no.~20, pp.~2059--2062, 1987.
+    \item S.~John, ``Strong localization of photons in certain disordered dielectric superlattices,'' \textit{Phys.\ Rev.\ Lett.}, vol.~58, no.~23, pp.~2486--2489, 1987.
+    \item O.~Painter et al., ``Two-dimensional photonic band-gap defect mode laser,'' \textit{Science}, vol.~284, no.~5421, pp.~1819--1821, 1999.
+    \item B.~S.~Song, S.~Noda, T.~Asano, and Y.~Akahane, ``Ultra-high-Q photonic double-heterostructure nanocavity,'' \textit{Nature Materials}, vol.~4, pp.~207--210, 2005.
+    \item Y.~Ota et al., ``Photonic crystal nanocavity based on a topological corner state,'' \textit{Optica}, vol.~6, no.~6, pp.~786--789, 2019.
+    \item F.~Liu and K.~Wakabayashi, ``Novel topological phase with a zero Berry curvature,'' \textit{Phys.\ Rev.\ Lett.}, vol.~118, no.~7, p.~076803, 2017.
+  \end{enumerate}
+}
+
+\end{document}

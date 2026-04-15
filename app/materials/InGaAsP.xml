@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<material name="InGaAsP">
+  <description>Indium Gallium Arsenide Phosphide - Telecom band (1.55 μm)</description>
+  <epsilon_real>12.25</epsilon_real>
+  <epsilon_imag>0.0</epsilon_imag>
+  <index_real>3.5</index_real>
+  <index_imag>0.0</index_imag>
+  <wavelength_um>1.55</wavelength_um>
+  <temperature_k>300</temperature_k>
+  <source>ingasp</source>
+</material>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<material name="Silicon">
+  <description>Silicon (Si) - Visible/Near-IR</description>
+  <epsilon_real>12.0</epsilon_real>
+  <epsilon_imag>0.0</epsilon_imag>
+  <index_real>3.6</index_real>
+  <index_imag>0.0</index_imag>
+  <wavelength_um>0.87</wavelength_um>
+  <temperature_k>300</temperature_k>
+  <source>gaas</source>
+</material>
